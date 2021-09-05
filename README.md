@@ -32,3 +32,8 @@ python3 main.py
 - `BOT_TOKEN` Your bot token from @BotFather
 
 ---
+
+## Credits
+
+- [Fayas Noushad](https://github.com/FayasNoushad)
+- [Pyrogram](https://github.com/pyrogram/pyrogram)
