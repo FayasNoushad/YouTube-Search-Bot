@@ -10,3 +10,5 @@ Made with Python3
 Copyright permission under MIT License
 License -> https://github.com/FayasNoushad/YouTube-Search-Bot/blob/main/LICENSE
 ```
+
+---
