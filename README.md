@@ -15,7 +15,7 @@ License -> https://github.com/FayasNoushad/YouTube-Search-Bot/blob/main/LICENSE
 
 ## Deploy
 
-```
+```sh
 git clone https://github.com/FayasNoushad/YouTube-Search-Bot/tree/main
 cd YouTube-Search-Bot
 pip3 install -r requirements.txt
