@@ -36,7 +36,33 @@ async def text(bot, update):
 
 @Bot.on_inline_query()
 async def search(bot, update):
-    query = update.query
+    results = requests.get("https://youtube.api.fayas.me/videos/?query=" + update.query).json()["result"][50:]
+    answers = []
+    for result in results:
+        title = result["title"]
+        description = f"{result["viewCount"]["short"]} | {result["duration"]}"
+        details = f"**{title}**" + "\n" \
+        f"**Channel:** [{result["channel"]["name"]}]({result["channel"]["link"]}" + "\n" \
+        f"**Duration:** {result["accessibility"]["duration"]}" + "\n" \
+        f"**Views:** {result["viewCount"]["text"]}" + "\n" \
+        f"**Published Time:** {result["publishedTime"]}" + "\n" \
+        "\n" + "Made by @FayasNoushad"
+        thumbnail = "https://img.youtube.com/vi/" + result["id"] + "/sddefault.jpg"
+        reply_markup = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]
+            ]
+        )
+        answers.append(
+            InlineQueryResultPhoto(
+                title=title,
+                description=description,
+                caption=details,
+                photo_url=thumbnail,
+                reply_markup=reply_markup
+            )
+        )
+    await update.answer(answers)
 
 
 Bot.run()
