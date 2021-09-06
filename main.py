@@ -6,6 +6,7 @@
 
 import os
 import requests
+from requests.utils import requote_uri
 from pyrogram import Client, filters
 from pyrogram.types import *
 
@@ -37,7 +38,9 @@ async def text(bot, update):
 
 @Bot.on_inline_query()
 async def search(bot, update):
-    results = requests.get("https://youtube.api.fayas.me/videos/?query=" + update.query).json()["result"][50:]
+    results = requests.get(
+        "https://youtube.api.fayas.me/videos/?query=" + requote_uri(update.query)
+    ).json()["result"][50:]
     answers = []
     for result in results:
         title = result["title"]
