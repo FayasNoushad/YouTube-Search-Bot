@@ -20,7 +20,7 @@ Bot = Client(
 
 @Bot.on_message(filters.all)
 async def text(bot, update):
-    text = "Search youtube videos using below buttons.\nMade by @FayasNoushad"
+    text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
     reply_markup = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton(text="Search here", switch_inline_query_current_chat="")],
