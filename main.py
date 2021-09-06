@@ -71,6 +71,8 @@ async def search(bot, update):
                     reply_markup=reply_markup
                 )
             )
+        except Exception as error:
+            print(error)
     await update.answer(answers)
 
 
