@@ -8,6 +8,7 @@ import requests
 from pyrogram import Client, filters
 from pyrogram.types import *
 
+
 Bot = Client(
     "YouTube-Search-Bot",
     bot_token = os.environ["BOT_TOKEN"],
