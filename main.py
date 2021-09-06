@@ -33,4 +33,9 @@ async def text(bot, update):
     )
 
 
+@Bot.on_inline_query()
+async def search(bot, update):
+    query = update.query
+
+
 Bot.run()
