@@ -40,12 +40,19 @@ async def search(bot, update):
     answers = []
     for result in results:
         title = result["title"]
-        description = f"{result["viewCount"]["short"]} | {result["duration"]}"
+        views_short = result["viewCount"]["short"]
+        duration = result["duration"]
+        duration_text = result["accessibility"]["duration"]
+        views = result["viewCount"]["text"]
+        publishedtime = result["publishedTime"]
+        channel_name = result["channel"]["name"]
+        channel_link = result["channel"]["link"]
+        description = f"{views_short} | {duration}"
         details = f"**{title}**" + "\n" \
-        f"**Channel:** [{result["channel"]["name"]}]({result["channel"]["link"]}" + "\n" \
-        f"**Duration:** {result["accessibility"]["duration"]}" + "\n" \
-        f"**Views:** {result["viewCount"]["text"]}" + "\n" \
-        f"**Published Time:** {result["publishedTime"]}" + "\n" \
+        f"**Channel:** [{channel_name}]({channel_link}" + "\n" \
+        f"**Duration:** {duration_text}" + "\n" \
+        f"**Views:** {views}" + "\n" \
+        f"**Published Time:** {publishedtime}" + "\n" \
         "\n" + "Made by @FayasNoushad"
         thumbnail = "https://img.youtube.com/vi/" + result["id"] + "/sddefault.jpg"
         reply_markup = InlineKeyboardMarkup(
