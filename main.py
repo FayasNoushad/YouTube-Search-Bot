@@ -52,12 +52,12 @@ async def search(bot, update):
         channel_name = result["channel"]["name"]
         channel_link = result["channel"]["link"]
         description = f"{views_short} | {duration}"
-        details = f"**{title}**" + "\n" \
-        f"**Channel:** [{channel_name}]({channel_link}" + "\n" \
+        details = f"**Title:** {title}" + "\n" \
+        f"**Channel:** [{channel_name}]({channel_link})" + "\n" \
         f"**Duration:** {duration_text}" + "\n" \
         f"**Views:** {views}" + "\n" \
         f"**Published Time:** {publishedtime}" + "\n" \
-        "\n" + "Made by @FayasNoushad"
+        "\n" + "**Made by @FayasNoushad**"
         thumbnail = "https://img.youtube.com/vi/" + result["id"] + "/sddefault.jpg"
         reply_markup = InlineKeyboardMarkup(
             [
