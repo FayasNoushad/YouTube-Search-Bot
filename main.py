@@ -61,15 +61,16 @@ async def search(bot, update):
                 [InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]
             ]
         )
-        answers.append(
-            InlineQueryResultPhoto(
-                title=title,
-                description=description,
-                caption=details,
-                photo_url=thumbnail,
-                reply_markup=reply_markup
+        try:
+            answers.append(
+                InlineQueryResultPhoto(
+                    title=title,
+                    description=description,
+                    caption=details,
+                    photo_url=thumbnail,
+                    reply_markup=reply_markup
+                )
             )
-        )
     await update.answer(answers)
 
 
