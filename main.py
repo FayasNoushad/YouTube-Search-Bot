@@ -5,6 +5,7 @@
 # License -> https://github.com/FayasNoushad/YouTube-Search-Bot/blob/main/LICENSE
 
 import os
+import ytthumb
 import requests
 from requests.utils import requote_uri
 from pyrogram import Client, filters
@@ -58,7 +59,7 @@ async def search(bot, update):
         f"**Views:** {views}" + "\n" \
         f"**Published Time:** {publishedtime}" + "\n" \
         "\n" + "**Made by @FayasNoushad**"
-        thumbnail = "https://img.youtube.com/vi/" + result["id"] + "/sddefault.jpg"
+        thumbnail = ytthumb.thumbnail(result["id"])
         reply_markup = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]
