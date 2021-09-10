@@ -20,7 +20,7 @@ Bot = Client(
 )
 
 
-@Bot.on_message(filters.all)
+@Bot.on_message(filters.private & filters.all)
 async def text(bot, update):
     text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
     reply_markup = InlineKeyboardMarkup(
