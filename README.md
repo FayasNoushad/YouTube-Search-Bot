@@ -1,9 +1,3 @@
-# YouTube-Search-Bot
-
-A youtube search telegram bot.
-
----
-
 ```
 Made with Python3
 (C) @FayasNoushad
@@ -16,7 +10,7 @@ License -> https://github.com/FayasNoushad/YouTube-Search-Bot/blob/main/LICENSE
 ## Deploy
 
 ```sh
-git clone https://github.com/FayasNoushad/YouTube-Search-Bot/tree/main
+git clone https://github.com/FayasNoushad/YouTube-Search-Bot.git
 cd YouTube-Search-Bot
 pip3 install -r requirements.txt
 # <Create Variables appropriately>
@@ -37,3 +31,5 @@ python3 main.py
 
 - [Fayas Noushad](https://github.com/FayasNoushad)
 - [Pyrogram](https://github.com/pyrogram/pyrogram)
+
+---
