@@ -7,16 +7,16 @@
 import os
 import ytthumb
 import requests
-from requests.utils import requote_uri
 from pyrogram import Client, filters
-from pyrogram.types import *
+from youtubesearchpython import VideosSearch
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto
 
 
 Bot = Client(
     "YouTube-Search-Bot",
-    bot_token = os.environ["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"]
+    bot_token = os.environ.get("BOT_TOKEN"),
+    api_id = int(os.environ.get("API_ID")),
+    api_hash = os.environ.get("API_HASH")
 )
 
 
@@ -39,9 +39,7 @@ async def text(bot, update):
 
 @Bot.on_inline_query()
 async def search(bot, update):
-    results = requests.get(
-        "https://youtube.api.fayas.me/videos/?query=" + requote_uri(update.query)
-    ).json()["result"][:50]
+    results = VideosSearch(update.query, limit=50).result()
     answers = []
     for result in results:
         title = result["title"]
