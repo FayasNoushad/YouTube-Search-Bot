@@ -1,15 +1,9 @@
-# Made with python3
-# (C) @FayasNoushad
-# Copyright permission under MIT License
-# All rights reserved by FayasNoushad
-# License -> https://github.com/FayasNoushad/YouTube-Search-Bot/blob/main/LICENSE
-
 import os
 import ytthumb
 import requests
 from pyrogram import Client, filters
-from youtubesearchpython import VideosSearch
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto
+from youtubesearchpython import VideosSearch
 
 
 Bot = Client(
@@ -22,6 +16,7 @@ Bot = Client(
 
 @Bot.on_message(filters.private & filters.all)
 async def text(bot, update):
+    
     text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
     reply_markup = InlineKeyboardMarkup(
         [
@@ -29,6 +24,7 @@ async def text(bot, update):
             [InlineKeyboardButton(text="Search in another chat", switch_inline_query="")]
         ]
     )
+    
     await update.reply_text(
         text=text,
         reply_markup=reply_markup,
@@ -39,8 +35,10 @@ async def text(bot, update):
 
 @Bot.on_inline_query()
 async def search(bot, update):
+    
     results = VideosSearch(update.query, limit=50).result()
     answers = []
+    
     for result in results:
         title = result["title"]
         views_short = result["viewCount"]["short"]
@@ -59,9 +57,7 @@ async def search(bot, update):
         "\n" + "**Made by @FayasNoushad**"
         thumbnail = ytthumb.thumbnail(result["id"])
         reply_markup = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]
-            ]
+            [[InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]]
         )
         try:
             answers.append(
@@ -75,6 +71,7 @@ async def search(bot, update):
             )
         except:
             pass
+    
     await update.answer(answers)
 
 
