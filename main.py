@@ -8,7 +8,7 @@ from youtubesearchpython import VideosSearch
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 API_ID = int(os.environ.get("API_ID"))
 API_HASH = os.environ.get("API_HASH")
-CHANNELS = set(int(x) for x in os.environ.get("CHANNELS", "").split())
+CHANNELS = set(id for id in os.environ.get("CHANNELS", "").split())
 
 Bot = Client(
     "YouTube-Search-Bot",
