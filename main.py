@@ -45,14 +45,13 @@ async def search(_, update):
         limit = 50
     else:
         limit = 100
-        channels = True 
     
     results = VideosSearch(update.query, limit=limit).result()["result"]
     answers = []
     
     for result in results:
         
-        if channels:
+        if limit == 100:
             channel_id = result["channel"]["id"]
             if channel_id not in CHANNELS:
                 continue
