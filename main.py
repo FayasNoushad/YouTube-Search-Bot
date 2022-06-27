@@ -38,9 +38,9 @@ async def text(bot, update):
 
 
 @Bot.on_inline_query()
-async def search(bot, update):
+async def search(_, update):
     
-    results = VideosSearch(update.query, limit=50).result()
+    results = VideosSearch(update.query, limit=50).result()["result"]
     answers = []
     
     for result in results:
