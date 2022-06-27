@@ -44,8 +44,12 @@ async def search(bot, update):
     answers = []
     
     for result in results:
-        if len(CHANNELS) > 0 and result["channel"]["id"] not in CHANNELS:
-            continue
+        
+        if len(CHANNELS) > 0:
+            channel_id = result["channel"]["id"]
+            if channel_id not in CHANNELS:
+                continue
+        
         title = result["title"]
         views_short = result["viewCount"]["short"]
         duration = result["duration"]
