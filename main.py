@@ -40,12 +40,19 @@ async def text(bot, update):
 @Bot.on_inline_query()
 async def search(_, update):
     
-    results = VideosSearch(update.query, limit=50).result()["result"]
+    # for more results 
+    if len(CHANNELS) == 0:
+        limit = 50
+    else:
+        limit = 100
+        channels = True 
+    
+    results = VideosSearch(update.query, limit=limit).result()["result"]
     answers = []
     
     for result in results:
         
-        if len(CHANNELS) > 0:
+        if channels:
             channel_id = result["channel"]["id"]
             if channel_id not in CHANNELS:
                 continue
