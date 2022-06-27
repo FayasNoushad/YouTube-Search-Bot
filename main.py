@@ -5,12 +5,16 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto
 from youtubesearchpython import VideosSearch
 
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+API_ID = int(os.environ.get("API_ID"))
+API_HASH = os.environ.get("API_HASH")
+CHANNELS = set(int(x) for x in os.environ.get("CHANNELS", "").split())
 
 Bot = Client(
     "YouTube-Search-Bot",
-    bot_token = os.environ.get("BOT_TOKEN"),
-    api_id = int(os.environ.get("API_ID")),
-    api_hash = os.environ.get("API_HASH")
+    bot_token=BOT_TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH
 )
 
 
@@ -40,6 +44,8 @@ async def search(bot, update):
     answers = []
     
     for result in results:
+        if len(CHANNELS) > 0 and result["channel"]["id"] not in CHANNELS:
+            continue
         title = result["title"]
         views_short = result["viewCount"]["short"]
         duration = result["duration"]
